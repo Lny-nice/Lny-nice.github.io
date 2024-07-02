@@ -64,10 +64,10 @@ const chatObserverrom = new MutationObserver((mutationsList, observer) => {
             }
             const msg = Object.assign(createMessage(), userinfo, message_info);
             console.log('-----------------msg-----------------', msg)
-            if (msg.message_type) {
-                ws_send(msg);
-            }
-
+            // if (msg.message_type) {
+            //     ws_send(msg);
+            // }
+            ws_send(msg);
         }
     }
 });
