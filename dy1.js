@@ -35,7 +35,7 @@ const chatObserverrom = new MutationObserver((mutationsList, observer) => {
             let { payload } = dom[propsId].children.props.message;
             let userinfo = getUser(payload.user);
             let message_info = null;
-			console.log('-----payload-----', payload)
+	    console.log('-----payload-----', payload)
             switch (payload.common.method) {
                 case 'WebcastGiftMessage':
                     message_info = {
@@ -64,6 +64,7 @@ const chatObserverrom = new MutationObserver((mutationsList, observer) => {
                     break
             }
             const msg = Object.assign(createMessage(), userinfo, message_info);
+		console.log('---------msg--------', msg)
             if (msg.message_type) {
                 ws_send(msg);
             }
