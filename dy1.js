@@ -35,6 +35,7 @@ const chatObserverrom = new MutationObserver((mutationsList, observer) => {
             let { payload } = dom[propsId].children.props.message;
             let userinfo = getUser(payload.user);
             let message_info = null;
+			console.log('-----payload-----', payload)
             switch (payload.common.method) {
                 case 'WebcastGiftMessage':
                     message_info = {
@@ -63,11 +64,10 @@ const chatObserverrom = new MutationObserver((mutationsList, observer) => {
                     break
             }
             const msg = Object.assign(createMessage(), userinfo, message_info);
-            console.log('-----------------msg-----------------', msg)
-            // if (msg.message_type) {
-            //     ws_send(msg);
-            // }
-            ws_send(msg);
+            if (msg.message_type) {
+                ws_send(msg);
+            }
+
         }
     }
 });
@@ -101,7 +101,7 @@ function getUser(user) {
     if (!user) {
         return {};
     }
-	console.log('-----------------user-----------------', user)
+// 	console.log('-----------------user-----------------', user)
     let msg = {
         user_follow_status: user.follow_status === "0" ? "y" : "n", // 是否关注
         user_id: user.short_id,
@@ -129,7 +129,6 @@ function getUser(user) {
 }
 
 function ws_send(message) {
-    console.log('-------------message------------', message)
     ws.send(JSON.stringify(message));
 }
 
