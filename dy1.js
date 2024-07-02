@@ -101,7 +101,7 @@ function getUser(user) {
     if (!user) {
         return {};
     }
-// 	console.log('-----------------user-----------------', user)
+	console.log('-----------------user-----------------', user)
     let msg = {
         user_follow_status: user.follow_status === "0" ? "y" : "n", // 是否关注
         user_id: user.short_id,
